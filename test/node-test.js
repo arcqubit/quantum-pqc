@@ -27,7 +27,7 @@ if (!fs.existsSync(pkgPath)) {
 // Load the WASM module
 let wasm;
 try {
-    wasm = require('../pkg-nodejs/rust_wasm_app.js');
+    wasm = require('../pkg-nodejs/pqc_scanner.js');
     console.log(`${GREEN}✓ WASM module loaded${RESET}\n`);
 } catch (err) {
     console.error(`${RED}✗ Failed to load WASM module:${RESET}`, err.message);
@@ -107,10 +107,10 @@ test('OSCAL JSON output', () => {
     const source = "const rsa = crypto.generateKeyPair('rsa', { modulusLength: 1024 });";
     const oscal = wasm.generate_oscal_report(source, 'javascript', 'test.js');
 
-    assertEqual(oscal.oscal_version, '1.1.2', 'Should use OSCAL 1.1.2');
-    assert(oscal.assessment_results, 'Should have assessment results');
-    assert(oscal.assessment_results.uuid, 'Should have UUID');
-    assert(oscal.assessment_results.results.length > 0, 'Should have results');
+    assertEqual(oscal['oscal-version'], '1.1.2', 'Should use OSCAL 1.1.2');
+    assert(oscal['assessment-results'], 'Should have assessment results');
+    assert(oscal['assessment-results'].uuid, 'Should have UUID');
+    assert(oscal['assessment-results'].results.length > 0, 'Should have results');
 });
 
 // Test 6: Multi-language support
@@ -133,7 +133,8 @@ test('Error handling - invalid language', () => {
         wasm.audit_code('test', 'invalid-lang');
         throw new Error('Should have thrown error for invalid language');
     } catch (err) {
-        assert(err.message.includes('Unsupported language'), 'Should error on invalid language');
+        const errStr = err.message || String(err);
+        assert(errStr.includes('Unsupported language'), 'Should error on invalid language');
     }
 });
 
@@ -143,7 +144,8 @@ test('Error handling - empty source', () => {
         wasm.audit_code('', 'javascript');
         throw new Error('Should have thrown error for empty source');
     } catch (err) {
-        assert(err.message.includes('Invalid source'), 'Should error on empty source');
+        const errStr = err.message || String(err);
+        assert(errStr.includes('Invalid source') || errStr.includes('Source code is empty'), 'Should error on empty source');
     }
 });
 
