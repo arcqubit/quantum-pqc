@@ -1,0 +1,257 @@
+name: Release Workflow
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+  # Manual releases disabled - use Release Please workflow
+  # workflow_dispatch:
+  #   inputs:
+  #     version:
+  #       description: 'Release version in CalVer format (e.g., 2025.11.0 for November 2025)'
+  #       required: true
+  #       type: string
+  #     prerelease:
+  #       description: 'Mark as pre-release'
+  #       required: false
+  #       type: boolean
+  #       default: false
+
+permissions: read-all
+
+jobs:
+  create-release:
+    name: Create GitHub Release
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: write       # Required: Create GitHub releases
+      id-token: write       # Required: Sigstore signing
+    outputs:
+      hashes: ${{ steps.hash.outputs.hashes }}
+      VERSION: ${{ steps.changelog.outputs.VERSION }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd  # v5.0.1
+        with:
+          fetch-depth: 0
+
+      - name: Setup Rust
+        uses: dtolnay/rust-toolchain@0f44b27771c32bda9f458f75a1e241b09791b331  # stable
+        with:
+          toolchain: stable
+          targets: wasm32-unknown-unknown
+          components: rustfmt, clippy
+
+      - name: Install wasm-pack
+        run: curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
+
+      - name: Build release binaries
+        run: |
+          cargo build --release
+          wasm-pack build --target bundler --out-dir pkg --release
+          wasm-pack build --target nodejs --out-dir pkg-nodejs --release
+          wasm-pack build --target web --out-dir pkg-web --release
+
+      - name: Run benchmarks
+        run: cargo bench --no-run
+
+      - name: Generate changelog
+        id: changelog
+        run: |
+          # Extract version from tag (removes 'v' prefix)
+          VERSION="${{ github.ref_name }}"
+          VERSION="${VERSION#v}"
+          echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
+
+          # Extract changelog for this version from Release Please generated CHANGELOG.md
+          if [ -f CHANGELOG.md ]; then
+            # Release Please uses format: ## [version] (date)
+            CHANGES=$(sed -n "/## \[$VERSION\]/,/## \[/p" CHANGELOG.md | sed '$d')
+            if [ -z "$CHANGES" ]; then
+              # Fallback: try without brackets
+              CHANGES=$(sed -n "/## $VERSION/,/## /p" CHANGELOG.md | sed '$d')
+            fi
+            echo "CHANGES<<EOF" >> $GITHUB_OUTPUT
+            echo "$CHANGES" >> $GITHUB_OUTPUT
+            echo "EOF" >> $GITHUB_OUTPUT
+          else
+            echo "CHANGES=Release $VERSION" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Create release archives
+        run: |
+          VERSION="${{ steps.changelog.outputs.VERSION }}"
+
+          # Create binary archive
+          mkdir -p release-artifacts
+          cp target/release/pdq-scanner release-artifacts/ || echo "Binary not found"
+          tar -czf pdq-scanner-${VERSION}-linux-x86_64.tar.gz -C release-artifacts pdq-scanner || true
+
+          # Create archives for each WASM target
+          tar -czf pdq-scanner-wasm-bundler-${VERSION}.tar.gz pkg/
+          tar -czf pdq-scanner-wasm-nodejs-${VERSION}.tar.gz pkg-nodejs/
+          tar -czf pdq-scanner-wasm-web-${VERSION}.tar.gz pkg-web/
+
+          # Create combined WASM archive
+          tar -czf pdq-scanner-wasm-all-${VERSION}.tar.gz pkg/ pkg-nodejs/ pkg-web/
+
+          # Generate checksums
+          sha256sum pdq-scanner-*.tar.gz > checksums.txt
+
+      - name: Generate artifact hashes for SLSA
+        id: hash
+        run: |
+          set -euo pipefail
+          # Generate SHA256 hashes in base64 format for SLSA provenance
+          sha256sum pdq-scanner-*.tar.gz > SHA256SUMS
+          echo "hashes=$(cat SHA256SUMS | base64 -w0)" >> $GITHUB_OUTPUT
+
+      - name: Install Cosign
+        uses: sigstore/cosign-installer@faadad0cce49287aee09b3a48701e75088a2c6ad  # v4.0.0
+
+      - name: Sign release artifacts with Sigstore
+        run: |
+          VERSION="${{ steps.changelog.outputs.VERSION }}"
+
+          # Sign all release archives
+          for file in pdq-scanner-*.tar.gz; do
+            echo "Signing $file with Sigstore..."
+            cosign sign-blob \
+              --yes \
+              --bundle "${file}.sigstore.json" \
+              "$file"
+          done
+
+          # Sign checksums file
+          cosign sign-blob \
+            --yes \
+            --bundle checksums.txt.sigstore.json \
+            checksums.txt
+
+      - name: Verify signatures
+        run: |
+          VERSION="${{ steps.changelog.outputs.VERSION }}"
+
+          for file in pdq-scanner-*.tar.gz; do
+            echo "Verifying signature for $file..."
+            cosign verify-blob \
+              --bundle "${file}.sigstore.json" \
+              --certificate-identity "https://github.com/${{ github.repository }}/.github/workflows/release.yml@refs/tags/v${VERSION}" \
+              --certificate-oidc-issuer "https://token.actions.githubusercontent.com" \
+              "$file"
+          done
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@5be0e66d93ac7ed76da52eca8bb058f665c3a5fe  # v2.4.2
+        with:
+          tag_name: v${{ steps.changelog.outputs.VERSION }}
+          name: Release v${{ steps.changelog.outputs.VERSION }}
+          body: ${{ steps.changelog.outputs.CHANGES }}
+          draft: false
+          prerelease: false
+          files: |
+            pdq-scanner-*.tar.gz
+            pdq-scanner-*.tar.gz.sigstore.json
+            checksums.txt
+            checksums.txt.sigstore.json
+            SHA256SUMS
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  build-container:
+    name: Build and Push Container
+    needs: create-release
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    permissions:
+      contents: read
+      packages: write
+      id-token: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd  # v5.0.1
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@e468171a9de216ec08956ac3ada2f0791b6bd435  # v3.11.1
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@5e57cd118135c172c3672efd75eb46360885c0ef  # v3.6.0
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract version
+        id: version
+        run: |
+          VERSION="${{ github.ref_name }}"
+          echo "VERSION=${VERSION#v}" >> $GITHUB_OUTPUT
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@263435318d21b8e681c14492fe198d362a7d2c83  # v6.18.0
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: |
+            ghcr.io/${{ github.repository }}:latest
+            ghcr.io/${{ github.repository }}:${{ steps.version.outputs.VERSION }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+          platforms: linux/amd64,linux/arm64
+
+      - name: Generate SBOM
+        run: |
+          docker run --rm \
+            -v /var/run/docker.sock:/var/run/docker.sock \
+            -v $(pwd):/out \
+            anchore/syft:latest \
+            ghcr.io/${{ github.repository }}:${{ steps.version.outputs.VERSION }} \
+            -o spdx-json=/out/sbom.json
+
+      - name: Upload SBOM
+        uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4  # v5.0.0
+        with:
+          name: sbom
+          path: sbom.json
+
+      - name: Install Cosign
+        uses: sigstore/cosign-installer@faadad0cce49287aee09b3a48701e75088a2c6ad  # v4.0.0
+
+      - name: Sign container image
+        run: |
+          echo "Signing container image with Sigstore..."
+          cosign sign --yes \
+            ghcr.io/${{ github.repository }}:${{ steps.version.outputs.VERSION }}
+
+      - name: Generate SBOM attestation for container
+        run: |
+          echo "Generating SBOM attestation..."
+          cosign attest --yes \
+            --predicate sbom.json \
+            --type spdxjson \
+            ghcr.io/${{ github.repository }}:${{ steps.version.outputs.VERSION }}
+
+      - name: Verify container signature
+        run: |
+          echo "Verifying container signature..."
+          cosign verify \
+            --certificate-identity "https://github.com/${{ github.repository }}/.github/workflows/release.yml@refs/tags/v${{ steps.version.outputs.VERSION }}" \
+            --certificate-oidc-issuer "https://token.actions.githubusercontent.com" \
+            ghcr.io/${{ github.repository }}:${{ steps.version.outputs.VERSION }}
+
+  generate-provenance:
+    name: Generate SLSA Provenance
+    needs: create-release
+    permissions:
+      actions: read
+      id-token: write
+      contents: write
+    uses: slsa-framework/slsa-github-generator/.github/workflows/generator_generic_slsa3.yml@v2.1.0
+    with:
+      base64-subjects: "${{ needs.create-release.outputs.hashes }}"
+      upload-assets: true
+      upload-tag-name: "v${{ needs.create-release.outputs.VERSION }}"
