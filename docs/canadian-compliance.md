@@ -416,8 +416,8 @@ Each finding includes specific ITSP references:
 ## Support
 
 For questions, issues, or feature requests related to Canadian compliance features:
-- GitHub Issues: https://github.com/arcqubit/pqc-scanner/issues
-- Documentation: https://github.com/arcqubit/pqc-scanner/docs
+- GitHub Issues: https://github.com/arcqubit/quantum-pqc/issues
+- Documentation: https://github.com/arcqubit/quantum-pqc/docs
 
 ## License
 

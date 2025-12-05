@@ -11,7 +11,7 @@ The ArcQubit team takes security seriously. We appreciate your efforts to respon
 Instead, please report them via one of the following methods:
 
 1. **GitHub Security Advisories (Preferred)**
-   - Navigate to the [Security tab](https://github.com/arcqubit/pqc-scanner/security/advisories)
+   - Navigate to the [Security tab](https://github.com/arcqubit/quantum-pqc/security/advisories)
    - Click "Report a vulnerability"
    - Fill out the advisory form with details
 
@@ -65,7 +65,7 @@ We release security patches for the following versions:
 ### Security Advisories
 
 Security advisories are published at:
-- [GitHub Security Advisories](https://github.com/arcqubit/pqc-scanner/security/advisories)
+- [GitHub Security Advisories](https://github.com/arcqubit/quantum-pqc/security/advisories)
 - Project documentation: [docs/security/](docs/security/)
 
 ### Automated Security Scanning
@@ -126,13 +126,13 @@ brew install cosign  # macOS
 # or: https://docs.sigstore.dev/cosign/installation/
 
 # Download release and signature
-wget https://github.com/arcqubit/pqc-scanner/releases/download/v2025.11.0/pqc-scanner-2025.11.0-linux-x86_64.tar.gz
-wget https://github.com/arcqubit/pqc-scanner/releases/download/v2025.11.0/pqc-scanner-2025.11.0-linux-x86_64.tar.gz.sigstore.json
+wget https://github.com/arcqubit/quantum-pqc/releases/download/v2025.11.0/pqc-scanner-2025.11.0-linux-x86_64.tar.gz
+wget https://github.com/arcqubit/quantum-pqc/releases/download/v2025.11.0/pqc-scanner-2025.11.0-linux-x86_64.tar.gz.sigstore.json
 
 # Verify signature
 cosign verify-blob \
   --bundle pqc-scanner-2025.11.0-linux-x86_64.tar.gz.sigstore.json \
-  --certificate-identity "https://github.com/arcqubit/pqc-scanner/.github/workflows/release.yml@refs/tags/v2025.11.0" \
+  --certificate-identity "https://github.com/arcqubit/quantum-pqc/.github/workflows/release.yml@refs/tags/v2025.11.0" \
   --certificate-oidc-issuer "https://token.actions.githubusercontent.com" \
   pqc-scanner-2025.11.0-linux-x86_64.tar.gz
 ```
@@ -150,12 +150,12 @@ sudo mv slsa-verifier-linux-amd64 /usr/local/bin/slsa-verifier
 sudo chmod +x /usr/local/bin/slsa-verifier
 
 # Download provenance
-wget https://github.com/arcqubit/pqc-scanner/releases/download/v2025.11.0/multiple.intoto.jsonl
+wget https://github.com/arcqubit/quantum-pqc/releases/download/v2025.11.0/multiple.intoto.jsonl
 
 # Verify provenance
 slsa-verifier verify-artifact \
   --provenance-path multiple.intoto.jsonl \
-  --source-uri github.com/arcqubit/pqc-scanner \
+  --source-uri github.com/arcqubit/quantum-pqc \
   pqc-scanner-2025.11.0-linux-x86_64.tar.gz
 ```
 
@@ -168,14 +168,14 @@ Docker images are signed and attested:
 ```bash
 # Verify image signature
 cosign verify \
-  --certificate-identity "https://github.com/arcqubit/pqc-scanner/.github/workflows/release.yml@refs/heads/main" \
+  --certificate-identity "https://github.com/arcqubit/quantum-pqc/.github/workflows/release.yml@refs/heads/main" \
   --certificate-oidc-issuer "https://token.actions.githubusercontent.com" \
   ghcr.io/arcqubit/pqc-scanner:2025.11.0
 
 # Verify SBOM attestation
 cosign verify-attestation \
   --type spdxjson \
-  --certificate-identity "https://github.com/arcqubit/pqc-scanner/.github/workflows/release.yml@refs/heads/main" \
+  --certificate-identity "https://github.com/arcqubit/quantum-pqc/.github/workflows/release.yml@refs/heads/main" \
   --certificate-oidc-issuer "https://token.actions.githubusercontent.com" \
   ghcr.io/arcqubit/pqc-scanner:2025.11.0
 ```
@@ -211,7 +211,7 @@ We recognize security researchers who help improve our security:
 
 ## OpenSSF Best Practices
 
-Current OpenSSF Scorecard: [![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/arcqubit/pqc-scanner/badge)](https://securityscorecards.dev/viewer/?uri=github.com/arcqubit/pqc-scanner)
+Current OpenSSF Scorecard: [![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/arcqubit/quantum-pqc/badge)](https://securityscorecards.dev/viewer/?uri=github.com/arcqubit/quantum-pqc)
 
 We follow [OpenSSF Best Practices](https://www.bestpractices.dev/):
 

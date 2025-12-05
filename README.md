@@ -501,13 +501,13 @@ const fixes = generate_remediation(source, 'python', 'crypto.py');
 
 Test the scanner against real-world vulnerable codebases in our dedicated samples repository:
 
-**Repository**: [github.com/arcqubit/pqc-scanner-samples](https://github.com/arcqubit/pqc-scanner-samples)
+**Repository**: [github.com/arcqubit/quantum-pqc-samples](https://github.com/arcqubit/quantum-pqc-samples)
 
 ### Quick Start
 
 ```bash
 # Clone the samples repository
-git clone https://github.com/arcqubit/pqc-scanner-samples.git
+git clone https://github.com/arcqubit/quantum-pqc-samples.git
 
 # Scan individual samples
 pqc-scanner scan pqc-scanner-samples/legacy-banking/
@@ -539,7 +539,7 @@ pqc-scanner scan pqc-scanner-samples/
 - **Educational focus**: Ideal for security training and testing
 
 For detailed vulnerability catalogs, performance benchmarks, and usage examples, see:
-- **[Samples Repository](https://github.com/arcqubit/pqc-scanner-samples)** - Main samples repo
+- **[Samples Repository](https://github.com/arcqubit/quantum-pqc-samples)** - Main samples repo
 - **[docs/SAMPLES.md](docs/SAMPLES.md)** - Local reference guide
 
 ## Installation & Distribution

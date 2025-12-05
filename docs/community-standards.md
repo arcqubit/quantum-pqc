@@ -286,7 +286,7 @@ See [docs/CALVER.md](CALVER.md) for details.
 
 ### GitHub Discussions
 
-**Primary community forum**: https://github.com/arcqubit/pqc-scanner/discussions
+**Primary community forum**: https://github.com/arcqubit/quantum-pqc/discussions
 
 **Categories**:
 - **Announcements**: Official project updates
@@ -396,7 +396,7 @@ Published quarterly:
 Monitored continuously:
 - Current score target: ~10.0/10
 - Automated daily scans
-- Public dashboard: https://securityscorecards.dev/viewer/?uri=github.com/arcqubit/pqc-scanner
+- Public dashboard: https://securityscorecards.dev/viewer/?uri=github.com/arcqubit/quantum-pqc
 
 **Key Metrics**:
 - ✅ Signed Releases
@@ -461,7 +461,7 @@ To suggest improvements to community standards:
 ## Contact
 
 For questions about community standards:
-- **GitHub Discussions**: [Community category](https://github.com/arcqubit/pqc-scanner/discussions)
+- **GitHub Discussions**: [Community category](https://github.com/arcqubit/quantum-pqc/discussions)
 - **Email**: community@arcqubit.io (future)
 - **Maintainers**: @arcqubit
 

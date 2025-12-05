@@ -350,7 +350,7 @@ All findings are uploaded to **GitHub Security > Code Scanning**:
 - **Trivy Config**: `trivy-config` category
 - **Trivy Docker**: `trivy-docker-image` category
 
-Access at: `https://github.com/arcqubit/pqc-scanner/security/code-scanning`
+Access at: `https://github.com/arcqubit/quantum-pqc/security/code-scanning`
 
 ---
 

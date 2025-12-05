@@ -489,9 +489,9 @@ jobs:
 ## Support
 
 - **Documentation**: [docs/](../docs/)
-- **Issues**: [GitHub Issues](https://github.com/arcqubit/pqc-scanner/issues)
+- **Issues**: [GitHub Issues](https://github.com/arcqubit/quantum-pqc/issues)
 - **Examples**: [examples/](../examples/)
-- **Community**: [Discussions](https://github.com/arcqubit/pqc-scanner/discussions)
+- **Community**: [Discussions](https://github.com/arcqubit/quantum-pqc/discussions)
 
 ## References
 

@@ -12,7 +12,7 @@ The workflow is configured to support multiple authentication methods with autom
 
 Enable GitHub Actions to create PRs at the repository level:
 
-1. Go to: https://github.com/arcqubit/pqc-scanner/settings/actions
+1. Go to: https://github.com/arcqubit/quantum-pqc/settings/actions
 2. Scroll to **Workflow permissions**
 3. Select: ✅ **Read and write permissions**
 4. Check: ✅ **Allow GitHub Actions to create and approve pull requests**
@@ -38,7 +38,7 @@ Create a GitHub App with scoped permissions:
 1. Go to: https://github.com/settings/apps/new
 2. Configure:
    - **GitHub App name**: `pqc-scanner-release-please`
-   - **Homepage URL**: `https://github.com/arcqubit/pqc-scanner`
+   - **Homepage URL**: `https://github.com/arcqubit/quantum-pqc`
    - **Webhook**: Uncheck "Active"
 
 3. **Permissions** (Repository permissions):
@@ -67,7 +67,7 @@ Create a GitHub App with scoped permissions:
 
 #### Step 4: Configure Repository Secrets
 
-1. Go to: https://github.com/arcqubit/pqc-scanner/settings/secrets/actions
+1. Go to: https://github.com/arcqubit/quantum-pqc/settings/secrets/actions
 2. Click **New repository secret**
 
 **Secret 1: RELEASE_PLEASE_APP_ID**
@@ -119,7 +119,7 @@ Create a PAT with limited scopes:
 
 #### Step 2: Add Repository Secret
 
-1. Go to: https://github.com/arcqubit/pqc-scanner/settings/secrets/actions
+1. Go to: https://github.com/arcqubit/quantum-pqc/settings/secrets/actions
 2. Click **New repository secret**
 3. Name: `RELEASE_PLEASE_TOKEN`
 4. Value: Your PAT

@@ -32,7 +32,7 @@ Follow these steps manually:
    | Field | Value |
    |-------|-------|
    | **GitHub App name** | `pqc-scanner-release-please` |
-   | **Homepage URL** | `https://github.com/arcqubit/pqc-scanner` |
+   | **Homepage URL** | `https://github.com/arcqubit/quantum-pqc` |
    | **Callback URL** | Leave empty |
    | **Setup URL** | Leave empty |
    | **Webhook** | ❌ Uncheck "Active" |
@@ -97,7 +97,7 @@ Now we'll add the App ID and Private Key as repository secrets.
 
 ### Using GitHub Web Interface:
 
-1. Go to: [Repository Secrets Settings](https://github.com/arcqubit/pqc-scanner/settings/secrets/actions)
+1. Go to: [Repository Secrets Settings](https://github.com/arcqubit/quantum-pqc/settings/secrets/actions)
 
 2. Click **"New repository secret"**
 
@@ -274,6 +274,6 @@ Once configured, Release Please will:
 
 **App Settings:** https://github.com/settings/apps/pqc-scanner-release-please
 
-**Repository Secrets:** https://github.com/arcqubit/pqc-scanner/settings/secrets/actions
+**Repository Secrets:** https://github.com/arcqubit/quantum-pqc/settings/secrets/actions
 
-**Workflow Runs:** https://github.com/arcqubit/pqc-scanner/actions/workflows/release-please.yml
+**Workflow Runs:** https://github.com/arcqubit/quantum-pqc/actions/workflows/release-please.yml

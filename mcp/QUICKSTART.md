@@ -180,6 +180,6 @@ npm install
 
 ## Support
 
-- **Issues**: https://github.com/arcqubit/pqc-scanner/issues
+- **Issues**: https://github.com/arcqubit/quantum-pqc/issues
 - **Documentation**: [README.md](README.md)
 - **MCP Spec**: https://modelcontextprotocol.io

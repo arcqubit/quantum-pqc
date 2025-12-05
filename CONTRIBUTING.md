@@ -42,7 +42,7 @@ This project adheres to the [Contributor Covenant Code of Conduct](CODE_OF_CONDU
 
 2. **Add Upstream Remote**
    ```bash
-   git remote add upstream https://github.com/arcqubit/pqc-scanner.git
+   git remote add upstream https://github.com/arcqubit/quantum-pqc.git
    git fetch upstream
    ```
 
@@ -460,14 +460,14 @@ cargo doc --no-deps --document-private-items --open
 
 ### Asking Questions
 
-- **General Questions**: Use [GitHub Discussions](https://github.com/arcqubit/pqc-scanner/discussions)
-- **Bug Reports**: Use [GitHub Issues](https://github.com/arcqubit/pqc-scanner/issues) with bug template
+- **General Questions**: Use [GitHub Discussions](https://github.com/arcqubit/quantum-pqc/discussions)
+- **Bug Reports**: Use [GitHub Issues](https://github.com/arcqubit/quantum-pqc/issues) with bug template
 - **Security Issues**: Email security@arcqubit.io (see [SECURITY.md](SECURITY.md))
 
 ### Getting Help
 
 - Read existing documentation in `docs/`
-- Check [GitHub Discussions](https://github.com/arcqubit/pqc-scanner/discussions)
+- Check [GitHub Discussions](https://github.com/arcqubit/quantum-pqc/discussions)
 - Review closed issues for similar problems
 - Ask in discussions (don't open issues for questions)
 
@@ -518,7 +518,7 @@ By contributing, you agree that your contributions will be licensed under the sa
 
 ## Questions?
 
-- Open a [GitHub Discussion](https://github.com/arcqubit/pqc-scanner/discussions)
+- Open a [GitHub Discussion](https://github.com/arcqubit/quantum-pqc/discussions)
 - Email: support@arcqubit.io
 - Review [SUPPORT.md](SUPPORT.md) for additional resources
 
