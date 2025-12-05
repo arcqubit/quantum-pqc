@@ -192,7 +192,7 @@ runs:
 
     - name: Upload to Code Scanning (SARIF)
       if: inputs.output-format == 'sarif'
-      uses: github/codeql-action/upload-sarif@v4
+      uses: github/codeql-action/upload-sarif@v4.31.7
       with:
         sarif_file: ${{ inputs.output-file }}
         category: pdq-scanner
