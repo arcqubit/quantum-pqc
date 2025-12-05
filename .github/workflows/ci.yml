@@ -24,10 +24,10 @@ jobs:
         os: [ubuntu-latest, windows-latest]
         rust: [stable]
     steps:
-      - uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd  # v5.0.1
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8  # v6.0.1
 
       - name: Install Rust
-        uses: dtolnay/rust-toolchain@0f44b27771c32bda9f458f75a1e241b09791b331  # stable
+        uses: dtolnay/rust-toolchain@0b1efabc08b657293548b77fb76cc02d26091c7e  # stable
         with:
           toolchain: ${{ matrix.rust }}
           components: rustfmt, clippy
@@ -66,10 +66,10 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
-      - uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd  # v5.0.1
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8  # v6.0.1
 
       - name: Install Rust
-        uses: dtolnay/rust-toolchain@0f44b27771c32bda9f458f75a1e241b09791b331  # stable
+        uses: dtolnay/rust-toolchain@0b1efabc08b657293548b77fb76cc02d26091c7e  # stable
         with:
           toolchain: stable
           targets: wasm32-unknown-unknown
@@ -106,10 +106,10 @@ jobs:
     timeout-minutes: 20
     continue-on-error: true
     steps:
-      - uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd  # v5.0.1
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8  # v6.0.1
 
       - name: Install Rust
-        uses: dtolnay/rust-toolchain@0f44b27771c32bda9f458f75a1e241b09791b331  # stable
+        uses: dtolnay/rust-toolchain@0b1efabc08b657293548b77fb76cc02d26091c7e  # stable
         with:
           toolchain: stable
 
@@ -122,10 +122,10 @@ jobs:
     timeout-minutes: 30
     continue-on-error: true
     steps:
-      - uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd  # v5.0.1
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8  # v6.0.1
 
       - name: Install Rust
-        uses: dtolnay/rust-toolchain@0f44b27771c32bda9f458f75a1e241b09791b331  # stable
+        uses: dtolnay/rust-toolchain@0b1efabc08b657293548b77fb76cc02d26091c7e  # stable
         with:
           toolchain: stable
 
@@ -148,10 +148,10 @@ jobs:
     timeout-minutes: 15
     continue-on-error: true
     steps:
-      - uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd  # v5.0.1
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8  # v6.0.1
 
       - name: Install Rust
-        uses: dtolnay/rust-toolchain@0f44b27771c32bda9f458f75a1e241b09791b331  # stable
+        uses: dtolnay/rust-toolchain@0b1efabc08b657293548b77fb76cc02d26091c7e  # stable
         with:
           toolchain: stable
 
@@ -167,10 +167,10 @@ jobs:
     timeout-minutes: 15
     continue-on-error: true
     steps:
-      - uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd  # v5.0.1
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8  # v6.0.1
 
       - name: Install Rust (nightly for udeps)
-        uses: dtolnay/rust-toolchain@0f44b27771c32bda9f458f75a1e241b09791b331  # nightly
+        uses: dtolnay/rust-toolchain@0b1efabc08b657293548b77fb76cc02d26091c7e  # nightly
         with:
           toolchain: nightly
 
@@ -197,7 +197,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd  # v5.0.1
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8  # v6.0.1
 
       - name: Run Trivy filesystem quick scan
         uses: aquasecurity/trivy-action@b6643a29fecd7f34b3597bc6acb0a98b03d33ff8  # v0.33.1
