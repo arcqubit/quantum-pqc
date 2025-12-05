@@ -148,7 +148,7 @@ fn print_version() {
     println!("PQC Scanner - Quantum-Safe Cryptography Auditor");
     println!("Version: {}", env!("CARGO_PKG_VERSION"));
     println!("License: MIT");
-    println!("Repository: https://github.com/arcqubit/pqc-scanner");
+    println!("Repository: https://github.com/arcqubit/quantum-pqc");
 }
 
 fn print_usage(program: &str) {

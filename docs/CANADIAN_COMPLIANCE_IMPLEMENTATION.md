@@ -549,9 +549,9 @@ $ cargo build --release
 
 ## Support & Contributions
 
-**Issues:** https://github.com/arcqubit/pqc-scanner/issues
-**Discussions:** https://github.com/arcqubit/pqc-scanner/discussions
-**Documentation:** https://github.com/arcqubit/pqc-scanner/docs
+**Issues:** https://github.com/arcqubit/quantum-pqc/issues
+**Discussions:** https://github.com/arcqubit/quantum-pqc/discussions
+**Documentation:** https://github.com/arcqubit/quantum-pqc/docs
 
 ---
 

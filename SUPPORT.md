@@ -19,8 +19,8 @@ Thank you for using PQC Scanner! This document provides resources for getting he
 
 1. **Search Documentation**: Check the [docs/](docs/) directory for guides
 2. **Check README**: Review the [README.md](README.md) for quick start info
-3. **Search Issues**: Look through [existing issues](https://github.com/arcqubit/pqc-scanner/issues)
-4. **Search Discussions**: Browse [GitHub Discussions](https://github.com/arcqubit/pqc-scanner/discussions)
+3. **Search Issues**: Look through [existing issues](https://github.com/arcqubit/quantum-pqc/issues)
+4. **Search Discussions**: Browse [GitHub Discussions](https://github.com/arcqubit/quantum-pqc/discussions)
 
 ### Where to Ask Questions
 
@@ -29,7 +29,7 @@ Choose the appropriate channel based on your question:
 #### GitHub Discussions (Recommended)
 **Best for**: General questions, usage help, ideas, and community discussion
 
-[Start a Discussion](https://github.com/arcqubit/pqc-scanner/discussions)
+[Start a Discussion](https://github.com/arcqubit/quantum-pqc/discussions)
 
 **Categories**:
 - **Q&A**: Ask questions about usage, installation, configuration
@@ -40,7 +40,7 @@ Choose the appropriate channel based on your question:
 #### GitHub Issues
 **Best for**: Bug reports, feature requests, documentation issues
 
-[Create an Issue](https://github.com/arcqubit/pqc-scanner/issues/new/choose)
+[Create an Issue](https://github.com/arcqubit/quantum-pqc/issues/new/choose)
 
 **Use issue templates for**:
 - Bug reports
@@ -116,7 +116,7 @@ ls examples/
 - **Ideas**: Feature discussions and roadmap
 - **Show and Tell**: Community projects and use cases
 
-[Join the Discussion](https://github.com/arcqubit/pqc-scanner/discussions)
+[Join the Discussion](https://github.com/arcqubit/quantum-pqc/discussions)
 
 ### Social Media
 - **Twitter/X**: [@arcqubit](https://twitter.com/arcqubit) (when available)
@@ -132,7 +132,7 @@ ls examples/
 ## Reporting Issues
 
 ### Bug Reports
-Use the [Bug Report template](https://github.com/arcqubit/pqc-scanner/issues/new?template=bug_report.yml)
+Use the [Bug Report template](https://github.com/arcqubit/quantum-pqc/issues/new?template=bug_report.yml)
 
 **Include**:
 - PQC Scanner version
@@ -143,7 +143,7 @@ Use the [Bug Report template](https://github.com/arcqubit/pqc-scanner/issues/new
 - Expected vs. actual behavior
 
 ### Feature Requests
-Use the [Feature Request template](https://github.com/arcqubit/pqc-scanner/issues/new?template=feature_request.yml)
+Use the [Feature Request template](https://github.com/arcqubit/quantum-pqc/issues/new?template=feature_request.yml)
 
 **Include**:
 - Clear problem statement
@@ -156,7 +156,7 @@ Use the [Feature Request template](https://github.com/arcqubit/pqc-scanner/issue
 
 Instead:
 1. Email security@arcqubit.io
-2. Or use [GitHub Security Advisories](https://github.com/arcqubit/pqc-scanner/security/advisories/new)
+2. Or use [GitHub Security Advisories](https://github.com/arcqubit/quantum-pqc/security/advisories/new)
 
 See [SECURITY.md](SECURITY.md) for full details.
 
@@ -240,10 +240,10 @@ A: Yes, see `examples/generate_compliance_report.rs` for customization options
 A: See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines
 
 **Q: I found a bug, what should I do?**
-A: Create a [bug report](https://github.com/arcqubit/pqc-scanner/issues/new?template=bug_report.yml)
+A: Create a [bug report](https://github.com/arcqubit/quantum-pqc/issues/new?template=bug_report.yml)
 
 **Q: Can I request a feature?**
-A: Yes! Create a [feature request](https://github.com/arcqubit/pqc-scanner/issues/new?template=feature_request.yml)
+A: Yes! Create a [feature request](https://github.com/arcqubit/quantum-pqc/issues/new?template=feature_request.yml)
 
 ### Licensing
 

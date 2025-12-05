@@ -390,13 +390,13 @@ jobs:
 
 ```bash
 # Download release and signature
-wget https://github.com/arcqubit/pqc-scanner/releases/download/v2025.11.0/pdq-scanner-2025.11.0-linux-x86_64.tar.gz
-wget https://github.com/arcqubit/pqc-scanner/releases/download/v2025.11.0/pdq-scanner-2025.11.0-linux-x86_64.tar.gz.sigstore.json
+wget https://github.com/arcqubit/quantum-pqc/releases/download/v2025.11.0/pdq-scanner-2025.11.0-linux-x86_64.tar.gz
+wget https://github.com/arcqubit/quantum-pqc/releases/download/v2025.11.0/pdq-scanner-2025.11.0-linux-x86_64.tar.gz.sigstore.json
 
 # Verify signature
 cosign verify-blob \
   --bundle pdq-scanner-2025.11.0-linux-x86_64.tar.gz.sigstore.json \
-  --certificate-identity "https://github.com/arcqubit/pqc-scanner/.github/workflows/release.yml@refs/tags/v2025.11.0" \
+  --certificate-identity "https://github.com/arcqubit/quantum-pqc/.github/workflows/release.yml@refs/tags/v2025.11.0" \
   --certificate-oidc-issuer "https://token.actions.githubusercontent.com" \
   pdq-scanner-2025.11.0-linux-x86_64.tar.gz
 ```
@@ -500,13 +500,13 @@ brew install cosign  # macOS
 # or: https://docs.sigstore.dev/cosign/installation/
 
 # Download artifact and signature
-wget https://github.com/arcqubit/pqc-scanner/releases/download/v2025.11.0/pdq-scanner-2025.11.0-linux-x86_64.tar.gz
-wget https://github.com/arcqubit/pqc-scanner/releases/download/v2025.11.0/pdq-scanner-2025.11.0-linux-x86_64.tar.gz.sigstore.json
+wget https://github.com/arcqubit/quantum-pqc/releases/download/v2025.11.0/pdq-scanner-2025.11.0-linux-x86_64.tar.gz
+wget https://github.com/arcqubit/quantum-pqc/releases/download/v2025.11.0/pdq-scanner-2025.11.0-linux-x86_64.tar.gz.sigstore.json
 
 # Verify signature
 cosign verify-blob \
   --bundle pdq-scanner-2025.11.0-linux-x86_64.tar.gz.sigstore.json \
-  --certificate-identity "https://github.com/arcqubit/pqc-scanner/.github/workflows/release.yml@refs/tags/v2025.11.0" \
+  --certificate-identity "https://github.com/arcqubit/quantum-pqc/.github/workflows/release.yml@refs/tags/v2025.11.0" \
   --certificate-oidc-issuer "https://token.actions.githubusercontent.com" \
   pdq-scanner-2025.11.0-linux-x86_64.tar.gz
 ```
@@ -517,12 +517,12 @@ Build provenance is available for supply chain verification:
 
 ```bash
 # Download provenance
-wget https://github.com/arcqubit/pqc-scanner/releases/download/v2025.11.0/multiple.intoto.jsonl
+wget https://github.com/arcqubit/quantum-pqc/releases/download/v2025.11.0/multiple.intoto.jsonl
 
 # Verify with slsa-verifier
 slsa-verifier verify-artifact \
   --provenance-path multiple.intoto.jsonl \
-  --source-uri github.com/arcqubit/pqc-scanner \
+  --source-uri github.com/arcqubit/quantum-pqc \
   pdq-scanner-2025.11.0-linux-x86_64.tar.gz
 ```
 
@@ -531,14 +531,14 @@ slsa-verifier verify-artifact \
 ```bash
 # Verify container signature
 cosign verify \
-  --certificate-identity "https://github.com/arcqubit/pqc-scanner/.github/workflows/release.yml@refs/heads/main" \
+  --certificate-identity "https://github.com/arcqubit/quantum-pqc/.github/workflows/release.yml@refs/heads/main" \
   --certificate-oidc-issuer "https://token.actions.githubusercontent.com" \
   ghcr.io/arcqubit/pqc-scanner:2025.11.0
 
 # Verify SBOM attestation
 cosign verify-attestation \
   --type spdxjson \
-  --certificate-identity "https://github.com/arcqubit/pqc-scanner/.github/workflows/release.yml@refs/heads/main" \
+  --certificate-identity "https://github.com/arcqubit/quantum-pqc/.github/workflows/release.yml@refs/heads/main" \
   --certificate-oidc-issuer "https://token.actions.githubusercontent.com" \
   ghcr.io/arcqubit/pqc-scanner:2025.11.0
 ```

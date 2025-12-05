@@ -5,7 +5,7 @@ edition = "2024"
 authors = ["ArcQubit Team"]
 description = "Quantum-safe cryptography auditor for detecting vulnerable algorithms"
 license = "MIT"
-repository = "https://github.com/arcqubit/pqc-scanner"
+repository = "https://github.com/arcqubit/quantum-pqc"
 
 [lib]
 name = "pqc_scanner"

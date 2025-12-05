@@ -83,9 +83,9 @@ CMD ["--help"]
 LABEL org.opencontainers.image.title="PQC Scanner"
 LABEL org.opencontainers.image.description="Quantum-safe cryptography auditor for detecting vulnerable algorithms in source code. Supports CLI and WASM for multi-platform deployment."
 LABEL org.opencontainers.image.vendor="ArcQubit Team"
-LABEL org.opencontainers.image.url="https://github.com/arcqubit/pqc-scanner"
-LABEL org.opencontainers.image.source="https://github.com/arcqubit/pqc-scanner"
-LABEL org.opencontainers.image.documentation="https://github.com/arcqubit/pqc-scanner/blob/main/README.md"
+LABEL org.opencontainers.image.url="https://github.com/arcqubit/quantum-pqc"
+LABEL org.opencontainers.image.source="https://github.com/arcqubit/quantum-pqc"
+LABEL org.opencontainers.image.documentation="https://github.com/arcqubit/quantum-pqc/blob/main/README.md"
 LABEL org.opencontainers.image.licenses="MIT"
 LABEL org.opencontainers.image.version="2025.11.18"
 

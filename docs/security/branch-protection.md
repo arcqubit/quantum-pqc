@@ -121,7 +121,7 @@ After configuring branch protection:
 3. **Check OpenSSF Scorecard**:
    ```bash
    # Run scorecard locally
-   scorecard --repo=github.com/arcqubit/pqc-scanner --show-details | grep -A 10 "Branch-Protection"
+   scorecard --repo=github.com/arcqubit/quantum-pqc --show-details | grep -A 10 "Branch-Protection"
    ```
 
 ## GitHub CLI Configuration

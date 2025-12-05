@@ -315,8 +315,8 @@ For platform-specific issues, see:
 
 ## Support and Contributions
 
-- Issues: [GitHub Issues](https://github.com/arcqubit/pqc-scanner/issues)
-- Discussions: [GitHub Discussions](https://github.com/arcqubit/pqc-scanner/discussions)
+- Issues: [GitHub Issues](https://github.com/arcqubit/quantum-pqc/issues)
+- Discussions: [GitHub Discussions](https://github.com/arcqubit/quantum-pqc/discussions)
 - Documentation: This file and platform-specific READMEs
 
 ---
