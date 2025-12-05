@@ -1,11 +1,11 @@
 # PQC Scanner - Quantum-Safe Crypto Auditor
 
-[![CI](https://github.com/arcqubit/pqc-scanner/actions/workflows/ci.yml/badge.svg)](https://github.com/arcqubit/pqc-scanner/actions/workflows/ci.yml)
-[![Docker Build](https://github.com/arcqubit/pqc-scanner/actions/workflows/docker-publish.yml/badge.svg)](https://github.com/arcqubit/pqc-scanner/actions/workflows/docker-publish.yml)
-[![Security Audit](https://github.com/arcqubit/pqc-scanner/actions/workflows/cargo-audit.yml/badge.svg)](https://github.com/arcqubit/pqc-scanner/actions/workflows/cargo-audit.yml)
-[![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/arcqubit/pqc-scanner/badge)](https://securityscorecards.dev/viewer/?uri=github.com/arcqubit/pqc-scanner)
-[![OpenSSF Best Practices](https://www.bestpractices.dev/projects/11462/badge)](https://www.bestpractices.dev/projects/11462)
-[![GitHub Release](https://img.shields.io/github/v/release/arcqubit/pqc-scanner?include_prereleases&label=calver&color=22bfda)](https://github.com/arcqubit/pqc-scanner/releases)
+[![CI](https://github.com/arcqubit/quantum-pqc/actions/workflows/ci.yml/badge.svg)](https://github.com/arcqubit/quantum-pqc/actions/workflows/ci.yml)
+[![Docker Build](https://github.com/arcqubit/quantum-pqc/actions/workflows/docker-publish.yml/badge.svg)](https://github.com/arcqubit/quantum-pqc/actions/workflows/docker-publish.yml)
+[![Security Audit](https://github.com/arcqubit/quantum-pqc/actions/workflows/cargo-audit.yml/badge.svg)](https://github.com/arcqubit/quantum-pqc/actions/workflows/cargo-audit.yml)
+[![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/arcqubit/quantum-pqc/badge)](https://securityscorecards.dev/viewer/?uri=github.com/arcqubit/quantum-pqc)
+[![OpenSSF Best Practices](https://www.bestpractices.dev/projects/?????/badge)](https://www.bestpractices.dev/projects/?????)
+[![GitHub Release](https://img.shields.io/github/v/release/arcqubit/quantum-pqc?include_prereleases&label=calver&color=22bfda)](https://github.com/arcqubit/quantum-pqc/releases)
 
 A high-performance Rust-based auditor for detecting quantum-vulnerable cryptographic algorithms in source code, compiled to WebAssembly for multi-platform deployment.
 
@@ -365,7 +365,6 @@ Initial Score: 100
 For comprehensive Canadian compliance documentation, see:
 
 - **[docs/canadian-compliance.md](docs/canadian-compliance.md)**: Complete usage guide
-- **[CANADIAN_COMPLIANCE_IMPLEMENTATION.md](CANADIAN_COMPLIANCE_IMPLEMENTATION.md)**: Technical implementation details
 - **[examples/canadian_compliance_example.rs](examples/canadian_compliance_example.rs)**: Working code examples
 
 ### Running Canadian Compliance Examples
@@ -386,7 +385,7 @@ cargo run --example canadian_compliance_example
 ## Project Structure
 
 ```
-pqc-scanner/
+quantum-pqc/
 ├── src/
 │   ├── lib.rs                  # WASM entry point & public API
 │   ├── types.rs                # Shared types, OSCAL schemas, Canadian types
@@ -425,7 +424,7 @@ pqc-scanner/
 
 ## Auto-Remediation
 
-The scanner may include in the future **intelligent auto-remediation** with template-based code fixes:
+The scanner may include in the future **intelligent auto-remediation** with template-based code fixes for manual review:
 
 ```rust
 use rust_wasm_app::{analyze, generate_remediations};
@@ -549,10 +548,10 @@ For detailed vulnerability catalogs, performance benchmarks, and usage examples,
 
 ```bash
 # Install globally
-npm install -g @arcqubit/pqc-scanner
+npm install -g @arcqubit/quantum-pqc
 
 # Or as project dependency
-npm install @arcqubit/pqc-scanner
+npm install @arcqubit/quantum-pqc
 ```
 
 ### Docker Container
@@ -563,16 +562,16 @@ The PQC Scanner is available as an optimized Docker container (<50MB) with multi
 
 ```bash
 # Pull latest image
-docker pull ghcr.io/arcqubit/pqc-scanner:latest
+docker pull ghcr.io/arcqubit/quantum-pqc:latest
 
 # Run scan on current directory
-docker run --rm -v $(pwd):/app/workspace ghcr.io/arcqubit/pqc-scanner:latest scan .
+docker run --rm -v $(pwd):/app/workspace ghcr.io/arcqubit/quantum-pqc:latest scan .
 
 # Show version
-docker run --rm ghcr.io/arcqubit/pqc-scanner:latest --version
+docker run --rm ghcr.io/arcqubit/quantum-pqc:latest --version
 
 # Show help
-docker run --rm ghcr.io/arcqubit/pqc-scanner:latest --help
+docker run --rm ghcr.io/arcqubit/quantum-pqc:latest --help
 ```
 
 #### Available Tags
@@ -587,18 +586,18 @@ docker run --rm ghcr.io/arcqubit/pqc-scanner:latest --help
 ```bash
 # Scan a specific directory
 docker run --rm -v $(pwd):/app/workspace \
-  ghcr.io/arcqubit/pqc-scanner:latest scan ./src
+  ghcr.io/arcqubit/quantum-pqc:latest scan ./src
 
 # Generate compliance report
 docker run --rm -v $(pwd):/app/workspace -v $(pwd)/reports:/app/reports \
-  ghcr.io/arcqubit/pqc-scanner:latest scan . --output /app/reports/report.json
+  ghcr.io/arcqubit/quantum-pqc:latest scan . --output /app/reports/report.json
 
 # Interactive shell for debugging
-docker run --rm -it --entrypoint sh ghcr.io/arcqubit/pqc-scanner:latest
+docker run --rm -it --entrypoint sh ghcr.io/arcqubit/quantum-pqc:latest
 
 # Run with specific language
 docker run --rm -v $(pwd):/app/workspace \
-  ghcr.io/arcqubit/pqc-scanner:latest scan . --language javascript
+  ghcr.io/arcqubit/quantum-pqc:latest scan . --language javascript
 ```
 
 #### Building Docker Image Locally
@@ -626,17 +625,17 @@ Using Docker directly:
 
 ```bash
 # Build for local architecture
-docker build -t pqc-scanner:local .
+docker build -t quantum-pqc:local .
 
 # Build multi-arch with buildx
 docker buildx build \
   --platform linux/amd64,linux/arm64 \
-  --tag ghcr.io/arcqubit/pqc-scanner:custom \
+  --tag ghcr.io/arcqubit/quantum-pqc:custom \
   --load \
   .
 
 # Push to registry
-docker push ghcr.io/arcqubit/pqc-scanner:custom
+docker push ghcr.io/arcqubit/quantum-pqc:custom
 ```
 
 #### Environment Variables
@@ -656,7 +655,7 @@ docker run --rm \
   -e RUST_LOG=debug \
   -e SCAN_TIMEOUT=600 \
   -v $(pwd):/app/workspace \
-  ghcr.io/arcqubit/pqc-scanner:latest scan .
+  ghcr.io/arcqubit/quantum-pqc:latest scan .
 ```
 
 #### Security Features
@@ -710,7 +709,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: arcqubit/pqc-scanner@v1
+      - uses: arcqubit/quantum-pqc@v1
         with:
           path: 'src/'
           fail-on-findings: true
@@ -741,20 +740,20 @@ sudo chmod +x /usr/local/bin/cosign
 
 ```bash
 # Download release artifact
-wget https://github.com/arcqubit/pqc-scanner/releases/download/v2025.11.0/pqc-scanner-2025.11.0-linux-x86_64.tar.gz
+wget https://github.com/arcqubit/quantum-pqc/releases/download/v2025.11.0/quantum-pqc-2025.11.0-linux-x86_64.tar.gz
 
 # Download Sigstore signature bundle
-wget https://github.com/arcqubit/pqc-scanner/releases/download/v2025.11.0/pqc-scanner-2025.11.0-linux-x86_64.tar.gz.sigstore.json
+wget https://github.com/arcqubit/quantum-pqc/releases/download/v2025.11.0/quantum-pqc-2025.11.0-linux-x86_64.tar.gz.sigstore.json
 ```
 
 #### 3. Verify Signature
 
 ```bash
 cosign verify-blob \
-  --bundle pqc-scanner-2025.11.0-linux-x86_64.tar.gz.sigstore.json \
-  --certificate-identity "https://github.com/arcqubit/pqc-scanner/.github/workflows/release.yml@refs/tags/v2025.11.0" \
+  --bundle quantum-pqc-2025.11.0-linux-x86_64.tar.gz.sigstore.json \
+  --certificate-identity "https://github.com/arcqubit/quantum-pqc/.github/workflows/release.yml@refs/tags/v2025.11.0" \
   --certificate-oidc-issuer "https://token.actions.githubusercontent.com" \
-  pqc-scanner-2025.11.0-linux-x86_64.tar.gz
+ quantum-pqc-2025.11.0-linux-x86_64.tar.gz
 ```
 
 ✅ **Success output**: `Verified OK`
@@ -776,7 +775,7 @@ sudo chmod +x /usr/local/bin/slsa-verifier
 
 ```bash
 # Download SLSA provenance (generated by slsa-framework/slsa-github-generator)
-wget https://github.com/arcqubit/pqc-scanner/releases/download/v2025.11.0/multiple.intoto.jsonl
+wget https://github.com/arcqubit/quantum-pqc/releases/download/v2025.11.0/multiple.intoto.jsonl
 ```
 
 #### 3. Verify Build Provenance
@@ -784,8 +783,8 @@ wget https://github.com/arcqubit/pqc-scanner/releases/download/v2025.11.0/multip
 ```bash
 slsa-verifier verify-artifact \
   --provenance-path multiple.intoto.jsonl \
-  --source-uri github.com/arcqubit/pqc-scanner \
-  pqc-scanner-2025.11.0-linux-x86_64.tar.gz
+  --source-uri github.com/arcqubit/quantum-pqc \
+  quantum-pqc-2025.11.0-linux-x86_64.tar.gz
 ```
 
 ✅ **Success output**: `Verified SLSA provenance`
@@ -796,9 +795,9 @@ slsa-verifier verify-artifact \
 
 ```bash
 cosign verify \
-  --certificate-identity "https://github.com/arcqubit/pqc-scanner/.github/workflows/release.yml@refs/heads/main" \
+  --certificate-identity "https://github.com/arcqubit/quantum-pqc/.github/workflows/release.yml@refs/heads/main" \
   --certificate-oidc-issuer "https://token.actions.githubusercontent.com" \
-  ghcr.io/arcqubit/pqc-scanner:2025.11.0
+  ghcr.io/arcqubit/quantum-pqc:2025.11.0
 ```
 
 #### Verify SBOM Attestation
@@ -806,9 +805,9 @@ cosign verify \
 ```bash
 cosign verify-attestation \
   --type spdxjson \
-  --certificate-identity "https://github.com/arcqubit/pqc-scanner/.github/workflows/release.yml@refs/heads/main" \
+  --certificate-identity "https://github.com/arcqubit/quantum-pqc/.github/workflows/release.yml@refs/heads/main" \
   --certificate-oidc-issuer "https://token.actions.githubusercontent.com" \
-  ghcr.io/arcqubit/pqc-scanner:2025.11.0
+  ghcr.io/arcqubit/quantum-pqc:2025.11.0
 ```
 
 ### Why This Matters

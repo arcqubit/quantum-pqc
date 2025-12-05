@@ -22,7 +22,7 @@ console.log(`${CYAN}${'='.repeat(70)}${RESET}\n`);
 // Load WASM module
 let wasm;
 try {
-    wasm = require('../pkg-nodejs/rust_wasm_app.js');
+    wasm = require('../pkg-nodejs/pqc_scanner.js');
     console.log(`${GREEN}✓ WASM module loaded successfully${RESET}\n`);
 } catch (err) {
     console.error(`${RED}✗ Failed to load WASM module:${RESET}`, err.message);
@@ -125,12 +125,12 @@ logSection('Test 3: OSCAL Assessment Results - JavaScript');
 try {
     const oscalReport = wasm.generate_oscal_report(jsSource, 'javascript', 'vulnerable-app.js');
 
-    logSuccess(`OSCAL Version: ${oscalReport.oscal_version}`);
-    logSuccess(`Assessment UUID: ${oscalReport.assessment_results.uuid}`);
-    logInfo(`Results: ${oscalReport.assessment_results.results.length}`);
+    logSuccess(`OSCAL Version: ${oscalReport['oscal-version']}`);
+    logSuccess(`Assessment UUID: ${oscalReport['assessment-results'].uuid}`);
+    logInfo(`Results: ${oscalReport['assessment-results'].results.length}`);
 
-    if (oscalReport.assessment_results.results.length > 0) {
-        const firstResult = oscalReport.assessment_results.results[0];
+    if (oscalReport['assessment-results'].results.length > 0) {
+        const firstResult = oscalReport['assessment-results'].results[0];
         logInfo(`Observations: ${firstResult.observations.length}`);
         logInfo(`Findings: ${firstResult.findings.length}`);
     }
@@ -215,12 +215,12 @@ logSection('Test 6: OSCAL Assessment Results - Python');
 try {
     const oscalReport = wasm.generate_oscal_report(pySource, 'python', 'vulnerable-app.py');
 
-    logSuccess(`OSCAL Version: ${oscalReport.oscal_version}`);
-    logSuccess(`Assessment UUID: ${oscalReport.assessment_results.uuid}`);
-    logInfo(`Results: ${oscalReport.assessment_results.results.length}`);
+    logSuccess(`OSCAL Version: ${oscalReport['oscal-version']}`);
+    logSuccess(`Assessment UUID: ${oscalReport['assessment-results'].uuid}`);
+    logInfo(`Results: ${oscalReport['assessment-results'].results.length}`);
 
-    if (oscalReport.assessment_results.results.length > 0) {
-        const firstResult = oscalReport.assessment_results.results[0];
+    if (oscalReport['assessment-results'].results.length > 0) {
+        const firstResult = oscalReport['assessment-results'].results[0];
         logInfo(`Observations: ${firstResult.observations.length}`);
         logInfo(`Findings: ${firstResult.findings.length}`);
     }
